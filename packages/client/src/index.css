@@ -1,7 +1,14 @@
 body {
   margin: 0;
   /* stylish font */
-  font-family: sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button.MuiButtonBase-root {
+  background: #C292FF;
+  color: #293347;
+  border-radius: 4px;
+  cursor: pointer;
 }

@@ -35,7 +35,7 @@ export const HeaderDiv = styled(FlexContainer)`
 `;
 
 export const Title = styled.span`
-  color: #ffffff;
+  color: #E4E2D7;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -101,11 +101,28 @@ export const FormButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 12px;
-  background: #C292FF;
+  background: #fC292FF;
   border: 1px solid #3E444E;
   border-radius: 4px;
   cursor: pointer;
 `;
+
+
+export const Button = styled.button`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  background: #C292FF;
+  color: #293347;
+  border: 1px solid #293347;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 5px 5px #FFE0BF;
+`;
+
 
 export const Footer = styled(FlexContainer)`
   flex-direction: row;

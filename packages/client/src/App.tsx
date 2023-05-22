@@ -10,6 +10,7 @@ import {
   Footer,
   TextLink,
 } from "./theme";
+import Button from '@mui/material/Button';
 
 export const App = () => {
   return (
@@ -19,8 +20,11 @@ export const App = () => {
           <Title>Meowland</Title>
           <Subtitle>Meows x Mud x Magic x More</Subtitle>
         </HeaderDiv>
-
         <Card>
+        <Button variant="contained">Frens</Button>
+        <Button variant="contained">Badges</Button>
+        <Button variant="contained">Inventory</Button>
+        <Button variant="contained">Marketplace</Button>
         </Card>
 
         <Footer>
