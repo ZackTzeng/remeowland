@@ -7,8 +7,9 @@ import ItemCard from "./ItemCard";
 
 import { useMUD } from "./MUDContext";
 import { useEntityQuery } from "@latticexyz/react";
-import { HasValue } from "@latticexyz/recs";
+import { HasValue, getComponentValueStrict } from "@latticexyz/recs";
 import { entityToBytes32 } from "./utils";
+import { useEffect } from "react";
 
 type Props = {
   open: boolean;
@@ -44,9 +45,21 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
     // list out all items 
     items = [...Array(NUM_SHOPITEMS).keys()];
   } else {
-    // get it from MUD store
-    items = useEntityQuery([HasValue(Location, {room: entityToBytes32(signer), locationType: 1})]);
+    try {
+
+      // get it from MUD store
+      // TODO fix async so we don't need to hardcode
+      // const ids = useEntityQuery([HasValue(Location, {room: entityToBytes32(signer), locationType: 1})]);
+      const room = "0x00000000000000000000000016c6b7427fa271a80a80c9936dd21c43d3c4a115";
+      items = useEntityQuery([HasValue(Location, {room: room, locationType: 1})]).map((id) => {
+        return getComponentValueStrict(Item, id).value;
+      });
+    } catch(error) {
+      console.log(error);
+      items = [];
+    }
   }
+
   return (
     <Modal
       open={open}
