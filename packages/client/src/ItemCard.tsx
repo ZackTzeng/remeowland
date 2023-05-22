@@ -9,15 +9,15 @@ import { NFT_STORAGE_SHOPITEMS } from "./constants";
 
 type Props = {
     id: number;
+    showPrice: boolean;
 }
 
-export default function ItemCard({id}: Props) {
+export default function ItemCard({id, showPrice = true}: Props) {
 
   const [img = "/assets/default.svg", setImg] = useState("");
   const [name = "Item Name", setName] = useState("");
   const [description = "Item Description", setDescription] = useState("");
   const [price = 0, setPrice] = useState("");
-
 
   useEffect(() => {
     async function loadData() {
@@ -55,7 +55,12 @@ export default function ItemCard({id}: Props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Buy for {price} Meows!</Button>
+        <Button size="small">
+          {showPrice?
+          "Buy for " + price + " Meows!" :
+          "Place in room!"
+          }
+        </Button>
       </CardActions>
     </Card>
   );
