@@ -11,6 +11,7 @@ import {
   Footer,
   TextLink,
   ScreenDiv,
+  Tree,
 } from "./theme";
 import Button from '@mui/material/Button';
 import { ItemDisplayModal } from "./ItemDisplayModal";
@@ -57,6 +58,7 @@ export const App = () => {
           <Title>Meowland</Title>
           <Subtitle>Meows x Mud x Magic x More</Subtitle>
         </HeaderDiv>
+        <Tree />
         <Card>
 
         <Grid container spacing={2}>
