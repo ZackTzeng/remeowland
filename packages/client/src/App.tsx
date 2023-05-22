@@ -32,15 +32,23 @@ import Grid from '@mui/material/Grid';
 // } = useMUD();
 
 export const App = () => {
-  const [show, setShow] = useState(false);
+  const [showInventory, setShowInventory] = useState(false);
+  const [showShop, setShowShop] = useState(false);
+
   const handleClose = () => {
     console.log('handleClose');
-    setShow(false);
+    setShowInventory(false);
+    setShowShop(false);
   }
-  const handleOpen = () => {
-    console.log('handleOpen');
-    setShow(true);
+  const handleOpenInventory = () => {
+    console.log('handleOpenInventory');
+    setShowInventory(true);
   }
+  const handleOpenShop = () => {
+    console.log('handleOpenShop');
+    setShowShop(true);
+  }
+
 
   return (
     <Container>
@@ -55,7 +63,7 @@ export const App = () => {
           <Grid item xs={6}>
             <Button variant="contained">Frens</Button>
             <Button variant="contained">Badges</Button>
-            <Button variant="contained" onClick={handleOpen}>Inventory</Button>
+            <Button variant="contained" onClick={handleOpenInventory}>Inventory</Button>
           </Grid>
           <Grid item xs={2}>
           </Grid>
@@ -76,7 +84,7 @@ export const App = () => {
           <Grid item xs={3}>
           </Grid>
           <Grid item xs={6}>
-            <Button fullWidth variant="contained">Shop Some Goodies!</Button>
+            <Button fullWidth variant="contained" onClick={handleOpenShop}>Shop Some Goodies!</Button>
           </Grid>
           <Grid item xs={3}>
           </Grid>
@@ -84,7 +92,12 @@ export const App = () => {
           
         </Card>
         <ItemDisplayModal
-          open={show}
+          open={showInventory}
+          onClose={handleClose}
+          isShop={false}
+        />
+        <ItemDisplayModal
+          open={showShop}
           onClose={handleClose}
         />
         <Footer>

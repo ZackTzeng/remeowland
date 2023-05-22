@@ -9,7 +9,7 @@ import { NFT_STORAGE_SHOPITEMS } from "./constants";
 
 type Props = {
     id: number;
-    showPrice: boolean;
+    showPrice?: boolean;
 }
 
 export default function ItemCard({id, showPrice = true}: Props) {

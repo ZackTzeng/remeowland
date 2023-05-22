@@ -13,6 +13,7 @@ import ItemCard from "./ItemCard";
 type Props = {
   open: boolean;
   onClose: () => void;
+  isShop?: boolean;
 }
 
 const style = {
@@ -36,7 +37,15 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export function ItemDisplayModal({open, onClose}: Props) {
+export function ItemDisplayModal({open, onClose, isShop = true}: Props) {
+  let items;
+  if (isShop) {
+    // list out all items 
+    items = [...Array(NUM_SHOPITEMS).keys()];
+  } else {
+    // get it from MUD store
+    items = [0];
+  }
   return (
     <Modal
       open={open}
@@ -44,8 +53,8 @@ export function ItemDisplayModal({open, onClose}: Props) {
     >
       <Box sx={style}>
         <Masonry columns={4} spacing={2}>
-          {[...Array(NUM_SHOPITEMS).keys()].map((i) => (
-            <ItemCard id={i}> </ItemCard>  
+          {items.map((i) => (
+            <ItemCard id={i} showPrice={isShop}> </ItemCard>  
           ))}
         </Masonry>
       </Box>
