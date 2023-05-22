@@ -55,7 +55,7 @@ export const App = () => {
           <Grid item xs={6}>
             <Button variant="contained">Frens</Button>
             <Button variant="contained">Badges</Button>
-            <Button variant="contained">Inventory</Button>
+            <Button variant="contained" onClick={handleOpen}>Inventory</Button>
           </Grid>
           <Grid item xs={2}>
           </Grid>
