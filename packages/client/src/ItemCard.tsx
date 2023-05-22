@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { NFT_STORAGE_SHOPITEMS } from "./constants";
 
 type Props = {
-    id: string;
+    id: number;
 }
 
 export default function ItemCard({id}: Props) {
@@ -22,7 +22,7 @@ export default function ItemCard({id}: Props) {
   useEffect(() => {
     async function loadData() {
       try {
-        const metadataUri = NFT_STORAGE_SHOPITEMS + id;
+        const metadataUri = NFT_STORAGE_SHOPITEMS + id.toString();
         const response = await fetch(metadataUri);
         const json = await response.json();
         let img = json.image;
