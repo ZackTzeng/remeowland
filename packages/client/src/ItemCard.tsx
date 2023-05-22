@@ -19,6 +19,10 @@ export default function ItemCard({id, showPrice = true}: Props) {
   const [description = "Item Description", setDescription] = useState("");
   const [price = 0, setPrice] = useState("");
 
+  function placeToRoom() {
+
+  }
+
   useEffect(() => {
     async function loadData() {
       try {
@@ -55,10 +59,10 @@ export default function ItemCard({id, showPrice = true}: Props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">
+        <Button size="small" onClick={placeToRoom}>
           {showPrice?
-          "Buy for " + price + " Meows!" :
-          "Place in room!"
+            "Buy for " + price + " Meows!" :
+            "Place in room!"
           }
         </Button>
       </CardActions>

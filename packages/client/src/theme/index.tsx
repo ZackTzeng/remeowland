@@ -49,16 +49,26 @@ export const ScreenDiv = styled(FlexContainer)`
 
 `;
 
-export const Tree = styled.div`
+// export const Tree = styled.div`
+//   position: absolute;
+//   bottom: 150px;
+//   left: 50px;
+//   height: 400px;
+//   width: 400px;
+//   object-fit: cover;
+//   z-index: 2;
+//   background: url("/assets/default.svg") no-repeat center;
+// `;
+
+export const GenericRoomItem = styled.div`
   position: absolute;
-  bottom: 150px;
-  left: 50px;
+
   height: 400px;
   width: 400px;
   object-fit: cover;
   z-index: 2;
-  background: url("/assets/default.svg") no-repeat center;
 `;
+//background: url("/assets/default.svg") no-repeat center;
 
 export const Title = styled.span`
   color: #E4E2D7;

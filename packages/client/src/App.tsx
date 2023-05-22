@@ -11,10 +11,11 @@ import {
   Footer,
   TextLink,
   ScreenDiv,
-  Tree,
 } from "./theme";
 import Button from '@mui/material/Button';
 import { ItemDisplayModal } from "./ItemDisplayModal";
+import RoomItem from "./RoomItem";
+import RoomCat from "./RoomCat";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 
@@ -35,6 +36,8 @@ import Grid from '@mui/material/Grid';
 export const App = () => {
   const [showInventory, setShowInventory] = useState(false);
   const [showShop, setShowShop] = useState(false);
+  const [showRoomItem, setShowRoomItem] = useState(false);
+  const [showEmptyText, setShowEmptyText] = useState(true);
 
   const handleClose = () => {
     console.log('handleClose');
@@ -49,6 +52,16 @@ export const App = () => {
     console.log('handleOpenShop');
     setShowShop(true);
   }
+  const hideEmptyText = () => {
+    console.log('hide empty text');
+    setShowEmptyText(false);
+  }
+
+  function RoomItemCallback() {
+
+  }
+
+  
 
 
   return (
@@ -58,9 +71,9 @@ export const App = () => {
           <Title>Meowland</Title>
           <Subtitle>Meows x Mud x Magic x More</Subtitle>
         </HeaderDiv>
-        <Tree />
         <Card>
-
+        <RoomItem id={1} x={10} y={0}  />
+        <RoomCat id={0} x={0} y={0} showRoomItem={true} />
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <Button variant="contained">Frens</Button>
@@ -75,11 +88,15 @@ export const App = () => {
           <Grid item xs={2}>
           </Grid>
           <Grid item xs={8}>
+            
             <ScreenDiv>
-            Welcome to your living room. 
-            It seems a little bit empty. 
-            Care to amplify the ambiance with a feline friend?
+              {showEmptyText?"":
+                `Welcome to your living room. 
+                It seems a little bit empty.
+                Care to amplify the ambiance with a feline friend?`
+              }
             </ScreenDiv>         
+            
           </Grid>
           <Grid item xs={2}>
           </Grid>
