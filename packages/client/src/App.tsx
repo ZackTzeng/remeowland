@@ -11,6 +11,19 @@ import {
   TextLink,
 } from "./theme";
 
+import { useMUD } from "./MUDContext";
+import { useEntityQuery } from "@latticexyz/react";
+import { Has, getComponentValueStrict } from "@latticexyz/recs";
+
+const {
+  components: {
+    
+  },
+  systemCalls: {
+
+  },
+} = useMUD();
+
 export const App = () => {
   return (
     <Container>
