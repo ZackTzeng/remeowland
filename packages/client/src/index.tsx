@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(rootElement);
 setup().then((result) => {
   root.render(
     <MUDProvider value={result}>
-      <App />
+      <App value={result} />
     </MUDProvider>
   );
   mountDevTools();

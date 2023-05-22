@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import {
   AppContainer,
@@ -18,23 +18,48 @@ import { ItemDisplayModal } from "./ItemDisplayModal";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 
-
-// import { useMUD } from "./MUDContext";
-// import { useEntityQuery } from "@latticexyz/react";
-// import { Has, getComponentValueStrict } from "@latticexyz/recs";
-
-// const {
-//   components: {
-    
-//   },
-//   systemCalls: {
-
-//   },
-// } = useMUD();
+import { Entity } from "@latticexyz/recs";
+import { useMUD } from "./MUDContext";
+import { useEntityQuery } from "@latticexyz/react";
+import { runQuery, Has, HasValue, getComponentValueStrict } from "@latticexyz/recs";
 
 export const App = () => {
+
+  const {
+    components: {
+      Item,
+      Position,
+      Location,
+    },
+    network: { worldContract },
+  } = useMUD();
+
+  const [me, setMe] = useState("");
+  // const [inventories, setInventories] = useState([]);
+  // const [roommies, setRoomies] = useState([]);
+  
   const [showInventory, setShowInventory] = useState(false);
   const [showShop, setShowShop] = useState(false);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const signer = await worldContract.signer?.getAddress();  
+        setMe(signer);
+        // TODO find out why this cannot work
+        // const invItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 1})]);
+        // const rooItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 2})]); 
+    
+        // setInventories(invItems);
+        // setRoomies(rooItems);
+      } catch (err) {
+        console.error(err);
+      }
+
+    }
+
+    loadData();
+  }, [worldContract.signer]);
 
   const handleClose = () => {
     console.log('handleClose');
@@ -97,10 +122,12 @@ export const App = () => {
           open={showInventory}
           onClose={handleClose}
           isShop={false}
+          signer={me}
         />
         <ItemDisplayModal
           open={showShop}
           onClose={handleClose}
+          signer={me}
         />
         <Footer>
           <TextLink href="https://ethglobal.com/events/autonomous">Meowland is with MUD created during Autonomous Worlds. Thank you ETHGlobal.</TextLink>

@@ -28,7 +28,7 @@ contract ItemSystem is System {
    */
   function addItemToRoom(bytes32 item, uint32 x, uint32 y) public {
     bytes32 room = addressToEntity(_msgSender());
-    Location.set(item, LocationType(2));
+    Location.set(item, room, LocationType(2));
     Position.set(item, room, x, y);
   }
 
@@ -48,7 +48,7 @@ contract ItemSystem is System {
     bytes32 item = keccak256(abi.encode("item", player, blockhash(block.number - 1), block.difficulty));
 
     OwnedBy.set(item, player);
-    Location.set(item, LocationType(1));
+    Location.set(item, player, LocationType(1));
     Balance.set(player, balance - itemTypeData.dCoin);
 
     int32 totalAffinity = Affinity.get(player);
@@ -85,7 +85,7 @@ contract ItemSystem is System {
     require(itemType.stealable || player == OwnedBy.get(item), "must be owner");
 
     OwnedBy.set(item, player);
-    Location.set(item, LocationType(1));
+    Location.set(item, player, LocationType(1));
 
     Balance.set(player, Balance.get(player) - itemType.dCoin);
     

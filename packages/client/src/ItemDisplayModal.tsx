@@ -1,19 +1,20 @@
-import { useState } from "react";
 import "./index.css";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Button from "@mui/material/Button";
 import Masonry from '@mui/lab/Masonry';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import { NUM_SHOPITEMS } from "./constants";
 import ItemCard from "./ItemCard";
+
+import { useMUD } from "./MUDContext";
+import { useEntityQuery } from "@latticexyz/react";
+import { HasValue } from "@latticexyz/recs";
+import { entityToBytes32 } from "./utils";
 
 type Props = {
   open: boolean;
   onClose: () => void;
   isShop?: boolean;
+  signer: string;
 }
 
 const style = {
@@ -29,22 +30,22 @@ const style = {
   p: 4,
 };
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(0.5),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) {
 
-export function ItemDisplayModal({open, onClose, isShop = true}: Props) {
+  const {
+    components: {
+      Item,
+      Location,
+    },
+  } = useMUD();
+  
   let items;
   if (isShop) {
     // list out all items 
     items = [...Array(NUM_SHOPITEMS).keys()];
   } else {
     // get it from MUD store
-    items = [0];
+    items = useEntityQuery([HasValue(Location, {room: entityToBytes32(signer), locationType: 1})]);
   }
   return (
     <Modal
