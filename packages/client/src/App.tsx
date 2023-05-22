@@ -12,6 +12,19 @@ import {
 } from "./theme";
 import Button from '@mui/material/Button';
 
+import { useMUD } from "./MUDContext";
+import { useEntityQuery } from "@latticexyz/react";
+import { Has, getComponentValueStrict } from "@latticexyz/recs";
+
+const {
+  components: {
+    
+  },
+  systemCalls: {
+
+  },
+} = useMUD();
+
 export const App = () => {
   return (
     <Container>
