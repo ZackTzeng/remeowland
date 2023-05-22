@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { NFT_STORAGE_SHOPITEMS } from "./constants";
+import { useMUD } from "./MUDContext";
 
 type Props = {
     id: number;
@@ -38,6 +39,29 @@ export default function ItemCard({id, showPrice = true}: Props) {
     loadData();
   }, []);
 
+  const {
+    systemCalls: {
+      acquireItem,
+      addItemToRoom,
+    }
+  } = useMUD();
+
+  const buyItem = async () => {
+    try {
+      await acquireItem(id.toString());
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  
+  const placeItem = async () => {
+    try {
+      await addItemToRoom(id.toString(), 300, 300);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -55,7 +79,7 @@ export default function ItemCard({id, showPrice = true}: Props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">
+        <Button size="small" onClick={showPrice? buyItem : placeItem}>
           {showPrice?
           "Buy for " + price + " Meows!" :
           "Place in room!"

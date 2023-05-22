@@ -11,5 +11,23 @@ export function createSystemCalls(
   { worldSend }: SetupNetworkResult,
   components: ClientComponents
 ) {
-  return {};
+
+  const acquireItem = async (id: string) => {
+    const tx = await worldSend("acquireItem", [
+      id.toString(),
+    ]);
+  };
+
+  const addItemToRoom = async (id: string, x: number, y: number) => {
+    const tx = await worldSend("addItemToRoom", [
+      entityToBytes32(id),
+      x.toString(),
+      y.toString(),
+    ]);
+  };
+
+  return {
+    acquireItem,
+    addItemToRoom,
+  };
 }

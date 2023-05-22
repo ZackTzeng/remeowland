@@ -30,12 +30,20 @@ export default mudConfig({
         id: "bytes32",
       },
       schema: {
-        uri: "string",
         total: "uint32",
+        uri: "string",
       },
     },
     OwnedBy: "bytes32",
-    Location: "LocationType",
+    Location: {
+      keySchema: {
+        id: "bytes32",
+      },
+      schema: {
+        room: "bytes32",
+        locationType: "LocationType",
+      }
+    },
     Position: {
       keySchema: {
         id: "bytes32"

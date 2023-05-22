@@ -100,8 +100,8 @@ export function defineContractComponents(world: World) {
       return defineComponent(
         world,
         {
-          uri: RecsType.String,
           total: RecsType.Number,
+          uri: RecsType.String,
         },
         {
           metadata: {
@@ -131,7 +131,8 @@ export function defineContractComponents(world: World) {
       return defineComponent(
         world,
         {
-          value: RecsType.Number,
+          room: RecsType.String,
+          locationType: RecsType.Number,
         },
         {
           metadata: {

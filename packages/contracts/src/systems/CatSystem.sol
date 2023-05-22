@@ -44,7 +44,7 @@ contract CatSystem is System {
     bytes32 item = keccak256(abi.encode("item", player, blockhash(block.number - 1), block.difficulty));
 
     OwnedBy.set(item, player);
-    Location.set(item, LocationType(2));
+    Location.set(item, room, LocationType(2));
     Position.set(item, room, x, y);
 
     int32 totalAffinity = Affinity.get(player);
@@ -61,7 +61,7 @@ contract CatSystem is System {
   function updateCats(string calldata uri, uint32 total) public {
 
     bytes32 player = addressToEntity(_msgSender());
-    Shelter.set(player, uri, total);
+    Shelter.set(player, total, uri);
 
     for (uint32 i = 0; i < total; i++) {
       bytes32 catId = keccak256(abi.encode("cat", player, blockhash(block.number - 1), block.difficulty));

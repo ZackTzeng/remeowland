@@ -23,11 +23,17 @@ import { LocationType } from "./../Types.sol";
 bytes32 constant _tableId = bytes32(abi.encodePacked(bytes16(""), bytes16("Location")));
 bytes32 constant LocationTableId = _tableId;
 
+struct LocationData {
+  bytes32 room;
+  LocationType locationType;
+}
+
 library Location {
   /** Get the table's schema */
   function getSchema() internal pure returns (Schema) {
-    SchemaType[] memory _schema = new SchemaType[](1);
-    _schema[0] = SchemaType.UINT8;
+    SchemaType[] memory _schema = new SchemaType[](2);
+    _schema[0] = SchemaType.BYTES32;
+    _schema[1] = SchemaType.UINT8;
 
     return SchemaLib.encode(_schema);
   }
@@ -41,8 +47,9 @@ library Location {
 
   /** Get the table's metadata */
   function getMetadata() internal pure returns (string memory, string[] memory) {
-    string[] memory _fieldNames = new string[](1);
-    _fieldNames[0] = "value";
+    string[] memory _fieldNames = new string[](2);
+    _fieldNames[0] = "room";
+    _fieldNames[1] = "locationType";
     return ("Location", _fieldNames);
   }
 
@@ -68,63 +75,152 @@ library Location {
     _store.setMetadata(_tableId, _tableName, _fieldNames);
   }
 
-  /** Get value */
-  function get(bytes32 key) internal view returns (LocationType value) {
+  /** Get room */
+  function getRoom(bytes32 id) internal view returns (bytes32 room) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((key));
+    _keyTuple[0] = bytes32((id));
 
     bytes memory _blob = StoreSwitch.getField(_tableId, _keyTuple, 0);
-    return LocationType(uint8(Bytes.slice1(_blob, 0)));
+    return (Bytes.slice32(_blob, 0));
   }
 
-  /** Get value (using the specified store) */
-  function get(IStore _store, bytes32 key) internal view returns (LocationType value) {
+  /** Get room (using the specified store) */
+  function getRoom(IStore _store, bytes32 id) internal view returns (bytes32 room) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((key));
+    _keyTuple[0] = bytes32((id));
 
     bytes memory _blob = _store.getField(_tableId, _keyTuple, 0);
+    return (Bytes.slice32(_blob, 0));
+  }
+
+  /** Set room */
+  function setRoom(bytes32 id, bytes32 room) internal {
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    StoreSwitch.setField(_tableId, _keyTuple, 0, abi.encodePacked((room)));
+  }
+
+  /** Set room (using the specified store) */
+  function setRoom(IStore _store, bytes32 id, bytes32 room) internal {
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    _store.setField(_tableId, _keyTuple, 0, abi.encodePacked((room)));
+  }
+
+  /** Get locationType */
+  function getLocationType(bytes32 id) internal view returns (LocationType locationType) {
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    bytes memory _blob = StoreSwitch.getField(_tableId, _keyTuple, 1);
     return LocationType(uint8(Bytes.slice1(_blob, 0)));
   }
 
-  /** Set value */
-  function set(bytes32 key, LocationType value) internal {
+  /** Get locationType (using the specified store) */
+  function getLocationType(IStore _store, bytes32 id) internal view returns (LocationType locationType) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((key));
+    _keyTuple[0] = bytes32((id));
 
-    StoreSwitch.setField(_tableId, _keyTuple, 0, abi.encodePacked(uint8(value)));
+    bytes memory _blob = _store.getField(_tableId, _keyTuple, 1);
+    return LocationType(uint8(Bytes.slice1(_blob, 0)));
   }
 
-  /** Set value (using the specified store) */
-  function set(IStore _store, bytes32 key, LocationType value) internal {
+  /** Set locationType */
+  function setLocationType(bytes32 id, LocationType locationType) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((key));
+    _keyTuple[0] = bytes32((id));
 
-    _store.setField(_tableId, _keyTuple, 0, abi.encodePacked(uint8(value)));
+    StoreSwitch.setField(_tableId, _keyTuple, 1, abi.encodePacked(uint8(locationType)));
+  }
+
+  /** Set locationType (using the specified store) */
+  function setLocationType(IStore _store, bytes32 id, LocationType locationType) internal {
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    _store.setField(_tableId, _keyTuple, 1, abi.encodePacked(uint8(locationType)));
+  }
+
+  /** Get the full data */
+  function get(bytes32 id) internal view returns (LocationData memory _table) {
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    bytes memory _blob = StoreSwitch.getRecord(_tableId, _keyTuple, getSchema());
+    return decode(_blob);
+  }
+
+  /** Get the full data (using the specified store) */
+  function get(IStore _store, bytes32 id) internal view returns (LocationData memory _table) {
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    bytes memory _blob = _store.getRecord(_tableId, _keyTuple, getSchema());
+    return decode(_blob);
+  }
+
+  /** Set the full data using individual values */
+  function set(bytes32 id, bytes32 room, LocationType locationType) internal {
+    bytes memory _data = encode(room, locationType);
+
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    StoreSwitch.setRecord(_tableId, _keyTuple, _data);
+  }
+
+  /** Set the full data using individual values (using the specified store) */
+  function set(IStore _store, bytes32 id, bytes32 room, LocationType locationType) internal {
+    bytes memory _data = encode(room, locationType);
+
+    bytes32[] memory _keyTuple = new bytes32[](1);
+    _keyTuple[0] = bytes32((id));
+
+    _store.setRecord(_tableId, _keyTuple, _data);
+  }
+
+  /** Set the full data using the data struct */
+  function set(bytes32 id, LocationData memory _table) internal {
+    set(id, _table.room, _table.locationType);
+  }
+
+  /** Set the full data using the data struct (using the specified store) */
+  function set(IStore _store, bytes32 id, LocationData memory _table) internal {
+    set(_store, id, _table.room, _table.locationType);
+  }
+
+  /** Decode the tightly packed blob using this table's schema */
+  function decode(bytes memory _blob) internal pure returns (LocationData memory _table) {
+    _table.room = (Bytes.slice32(_blob, 0));
+
+    _table.locationType = LocationType(uint8(Bytes.slice1(_blob, 32)));
   }
 
   /** Tightly pack full data using this table's schema */
-  function encode(LocationType value) internal view returns (bytes memory) {
-    return abi.encodePacked(value);
+  function encode(bytes32 room, LocationType locationType) internal view returns (bytes memory) {
+    return abi.encodePacked(room, locationType);
   }
 
   /** Encode keys as a bytes32 array using this table's schema */
-  function encodeKeyTuple(bytes32 key) internal pure returns (bytes32[] memory _keyTuple) {
+  function encodeKeyTuple(bytes32 id) internal pure returns (bytes32[] memory _keyTuple) {
     _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((key));
+    _keyTuple[0] = bytes32((id));
   }
 
   /* Delete all data for given keys */
-  function deleteRecord(bytes32 key) internal {
+  function deleteRecord(bytes32 id) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((key));
+    _keyTuple[0] = bytes32((id));
 
     StoreSwitch.deleteRecord(_tableId, _keyTuple);
   }
 
   /* Delete all data for given keys (using the specified store) */
-  function deleteRecord(IStore _store, bytes32 key) internal {
+  function deleteRecord(IStore _store, bytes32 id) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((key));
+    _keyTuple[0] = bytes32((id));
 
     _store.deleteRecord(_tableId, _keyTuple);
   }
