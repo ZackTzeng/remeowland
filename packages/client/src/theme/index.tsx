@@ -16,11 +16,11 @@ export const FlexContainer = styled.div<{
 `;
 
 export const Container = styled.div`
-  background: #191c24;
+  background: #293347;
   height: 100vh;
   overflow: hidden;
   ${FlexContainer};
-  font-family: sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
 `;
 
 export const AppContainer = styled(FlexContainer)`
@@ -52,9 +52,9 @@ export const Subtitle = styled.span`
 
 export const Card = styled.div`
   color: white;
-  width: 480px;
-  height: 400px;
-  background: #23272f;
+  width: 960px;
+  height: 600px;
+  background: #FFB5C6;
   border: 1px solid #3e444e;
   border-radius: 4px;
   ${FlexContainer};
@@ -77,7 +77,7 @@ export const FormField = styled.input`
   align-items: flex-start;
   padding: 12px 16px;
   gap: 8px;
-  background: #2A2E37;
+  background: #C292FF;
   border: 1px solid #3E444E;
   border-radius: 4px;
   flex: none;
@@ -101,7 +101,7 @@ export const FormButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 12px;
-  background: #2A2E37;
+  background: #C292FF;
   border: 1px solid #3E444E;
   border-radius: 4px;
   cursor: pointer;

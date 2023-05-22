@@ -16,15 +16,16 @@ export const App = () => {
     <Container>
       <AppContainer>
         <HeaderDiv>
-          <Title>MUD x React Workshop</Title>
-          <Subtitle>Creating a todo list using MUD</Subtitle>
+          <Title>Meowland</Title>
+          <Subtitle>Meows x Mud x Magic x More</Subtitle>
         </HeaderDiv>
 
         <Card>
         </Card>
 
         <Footer>
-          <TextLink href="https://v2.mud.dev">MUD docs</TextLink>
+          <TextLink href="https://ethglobal.com/events/autonomous">Meowland is with MUD created during Autonomous Worlds. Thank you ETHGlobal.</TextLink>
+          {/* Meowland is created with <TextLink href="https://v2.mud.dev">MUD</TextLink> during <TextLink href="https://ethglobal.com/events/autonomous">Autonomous World</TextLink>. Thank you <TextLink href="https://ethglobal.com/">ETHGobal</TextLink>.     */}
         </Footer>
       </AppContainer>
     </Container>
