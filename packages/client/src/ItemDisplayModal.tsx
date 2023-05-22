@@ -7,10 +7,13 @@ import Button from "@mui/material/Button";
 import Masonry from '@mui/lab/Masonry';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import { NUM_SHOPITEMS } from "./constants";
+import ItemCard from "./ItemCard";
 
 type Props = {
   open: boolean;
   onClose: () => void;
+  isShop?: boolean;
 }
 
 const style = {
@@ -26,8 +29,6 @@ const style = {
   p: 4,
 };
 
-const heights = [150, 30, 90, 70, 110, 150, 130, 80, 50, 90, 100, 150, 30, 50, 80];
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -36,7 +37,15 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export function ItemDisplayModal({open, onClose}: Props) {
+export function ItemDisplayModal({open, onClose, isShop = true}: Props) {
+  let items;
+  if (isShop) {
+    // list out all items 
+    items = [...Array(NUM_SHOPITEMS).keys()];
+  } else {
+    // get it from MUD store
+    items = [0];
+  }
   return (
     <Modal
       open={open}
@@ -44,10 +53,8 @@ export function ItemDisplayModal({open, onClose}: Props) {
     >
       <Box sx={style}>
         <Masonry columns={4} spacing={2}>
-          {heights.map((height, index) => (
-            <Item key={index} sx={{ height }}>
-              {index + 1}
-            </Item>
+          {items.map((i) => (
+            <ItemCard id={i} showPrice={isShop}> </ItemCard>  
           ))}
         </Masonry>
       </Box>
