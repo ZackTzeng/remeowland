@@ -1,1 +1,4 @@
-# Build with MUD and React Workshop Starting Point
+# Meowland
+
+EthGlobal - Autonomous World.
+Powered by MUD.
