@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import "./index.css";
 import {
   AppContainer,
@@ -12,8 +13,10 @@ import {
   ScreenDiv,
 } from "./theme";
 import Button from '@mui/material/Button';
+import { ItemDisplayModal } from "./ItemDisplayModal";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+
 
 // import { useMUD } from "./MUDContext";
 // import { useEntityQuery } from "@latticexyz/react";
@@ -29,6 +32,16 @@ import Grid from '@mui/material/Grid';
 // } = useMUD();
 
 export const App = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => {
+    console.log('handleClose');
+    setShow(false);
+  }
+  const handleOpen = () => {
+    console.log('handleOpen');
+    setShow(true);
+  }
+
   return (
     <Container>
       <AppContainer>
@@ -68,9 +81,12 @@ export const App = () => {
           <Grid item xs={3}>
           </Grid>
         </Grid>
-
+          
         </Card>
-
+        <ItemDisplayModal
+          open={show}
+          onClose={handleClose}
+        />
         <Footer>
           <TextLink href="https://ethglobal.com/events/autonomous">Meowland is with MUD created during Autonomous Worlds. Thank you ETHGlobal.</TextLink>
           {/* Meowland is created with <TextLink href="https://v2.mud.dev">MUD</TextLink> during <TextLink href="https://ethglobal.com/events/autonomous">Autonomous World</TextLink>. Thank you <TextLink href="https://ethglobal.com/">ETHGobal</TextLink>.     */}
