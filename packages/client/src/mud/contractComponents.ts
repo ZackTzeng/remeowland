@@ -220,5 +220,21 @@ export function defineContractComponents(world: World) {
         }
       );
     })(),
+    ToDo: (() => {
+      const tableId = new TableId("", "ToDo");
+      return defineComponent(
+        world,
+        {
+          done: RecsType.Boolean,
+          body: RecsType.String,
+        },
+        {
+          metadata: {
+            contractId: tableId.toHexString(),
+            tableId: tableId.toString(),
+          },
+        }
+      );
+    })(),
   };
 }

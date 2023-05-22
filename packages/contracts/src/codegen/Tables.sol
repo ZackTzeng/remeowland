@@ -17,3 +17,4 @@ import { ItemType, ItemTypeData, ItemTypeTableId } from "./tables/ItemType.sol";
 import { Item, ItemTableId } from "./tables/Item.sol";
 import { Balance, BalanceTableId } from "./tables/Balance.sol";
 import { Affinity, AffinityTableId } from "./tables/Affinity.sol";
+import { ToDo, ToDoData, ToDoTableId } from "./tables/ToDo.sol";

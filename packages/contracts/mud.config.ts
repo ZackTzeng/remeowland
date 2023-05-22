@@ -59,8 +59,19 @@ export default mudConfig({
     Item: "uint32",
     Balance: "int32",
     Affinity: "int32",
+    ToDo: {
+      schema: {
+        done: "bool",
+        body: "string",
+      }
+    }
   },
-  // modules: [
+  modules: [
+    {
+      name: "UniqueEntityModule",
+      root: true,
+      args: [],
+    }
   //   {
   //     name: "KeysInTableModule",
   //     root: true,
@@ -71,5 +82,5 @@ export default mudConfig({
   //     root: true,
   //     args: [resolveTableId("Shelter")],
   //   },
-  // ]
+  ],
 });
