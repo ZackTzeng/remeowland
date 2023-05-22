@@ -67,7 +67,7 @@ contract EnterSystem is System {
       bytes32 item = keccak256(abi.encode("item", player, blockhash(block.number - 1), block.difficulty));
 
       OwnedBy.set(item, player);
-      Location.set(item, LocationType(2));
+      Location.set(item, room, LocationType(2));
       Position.set(item, room, uint32((rand + i) % 160), uint32((rand + i * 12) % 100));
       int32 totalAffinity = Affinity.get(room);
 

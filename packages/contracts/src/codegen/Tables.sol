@@ -11,7 +11,7 @@ import { AffinityMin, AffinityMinTableId } from "./tables/AffinityMin.sol";
 import { Cat, CatTableId } from "./tables/Cat.sol";
 import { Shelter, ShelterData, ShelterTableId } from "./tables/Shelter.sol";
 import { OwnedBy, OwnedByTableId } from "./tables/OwnedBy.sol";
-import { Location, LocationTableId } from "./tables/Location.sol";
+import { Location, LocationData, LocationTableId } from "./tables/Location.sol";
 import { Position, PositionData, PositionTableId } from "./tables/Position.sol";
 import { ItemType, ItemTypeData, ItemTypeTableId } from "./tables/ItemType.sol";
 import { Item, ItemTableId } from "./tables/Item.sol";
