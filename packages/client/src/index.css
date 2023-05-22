@@ -11,4 +11,24 @@ button.MuiButtonBase-root {
   color: #293347;
   border-radius: 4px;
   cursor: pointer;
+  margin: 5px;
+}
+
+button.MuiButtonBase-root:hover {
+  background: #E4E2D7;
+  color: #293347;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+div.MuiInputBase-root {
+  height: 36.5px;
+}
+
+div.MuiGrid-root {
+  grid-template-rows: 50px 500px 50px;
+}
+
+div.MuiGrid-root.MuiGrid-container {
+  height: 750px;
 }

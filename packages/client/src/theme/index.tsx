@@ -33,6 +33,20 @@ export const AppContainer = styled(FlexContainer)`
 export const HeaderDiv = styled(FlexContainer)`
   gap: 4px;
 `;
+export const ScreenDiv = styled(FlexContainer)`
+
+  font-family: 'Press Start 2P', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 64px;
+
+  text-align: center;
+  letter-spacing: -0.05em;
+
+  color: #293347;
+
+`;
 
 export const Title = styled.span`
   color: #E4E2D7;
@@ -54,13 +68,14 @@ export const Card = styled.div`
   color: white;
   width: 960px;
   height: 600px;
-  background: #FFB5C6;
   border: 1px solid #3e444e;
   border-radius: 4px;
   ${FlexContainer};
   padding: 16px;
   gap: 16px;
   margin-top: 1rem;
+  background: url("/assets/room.png") no-repeat center;
+  background-size: contain;
 `;
 
 export const FormFieldWrapper = styled(FlexContainer)`
