@@ -10,9 +10,13 @@ import {
   Title,
   Footer,
   TextLink,
+  ScreenDiv,
 } from "./theme";
 import Button from '@mui/material/Button';
 import { ItemDisplayModal } from "./ItemDisplayModal";
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+
 
 // import { useMUD } from "./MUDContext";
 // import { useEntityQuery } from "@latticexyz/react";
@@ -46,10 +50,38 @@ export const App = () => {
           <Subtitle>Meows x Mud x Magic x More</Subtitle>
         </HeaderDiv>
         <Card>
-        <Button variant="contained">Frens</Button>
-        <Button variant="contained">Badges</Button>
-        <Button variant="contained" onClick={handleOpen}>Inventory</Button>
-        <Button variant="contained">Marketplace</Button>
+
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Button variant="contained">Frens</Button>
+            <Button variant="contained">Badges</Button>
+            <Button variant="contained">Inventory</Button>
+          </Grid>
+          <Grid item xs={2}>
+          </Grid>
+          <Grid item xs={4}>
+            {/* <TextField fullWidth label="visit room" id="visit" /> */}
+          </Grid>
+          <Grid item xs={2}>
+          </Grid>
+          <Grid item xs={8}>
+            <ScreenDiv>
+            Welcome to your living room. 
+            It seems a little bit empty. 
+            Care to amplify the ambiance with a feline friend?
+            </ScreenDiv>         
+          </Grid>
+          <Grid item xs={2}>
+          </Grid>
+          <Grid item xs={3}>
+          </Grid>
+          <Grid item xs={6}>
+            <Button fullWidth variant="contained">Shop Some Goodies!</Button>
+          </Grid>
+          <Grid item xs={3}>
+          </Grid>
+        </Grid>
+          
         </Card>
         <ItemDisplayModal
           open={show}
