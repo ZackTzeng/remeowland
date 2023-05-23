@@ -47,6 +47,7 @@ contract ItemSystem is System {
 
     bytes32 item = keccak256(abi.encode("item", player, blockhash(block.number - 1), block.difficulty));
 
+    Item.set(item, itemType);
     OwnedBy.set(item, player);
     Location.set(item, player, LocationType(1));
     Balance.set(player, balance - itemTypeData.dCoin);

@@ -23,6 +23,7 @@ import { Entity } from "@latticexyz/recs";
 import { useMUD } from "./MUDContext";
 import { useEntityQuery } from "@latticexyz/react";
 import { runQuery, Has, HasValue, getComponentValueStrict } from "@latticexyz/recs";
+import { entityToBytes32 } from "./utils";
 
 export const App = () => {
 
@@ -36,9 +37,6 @@ export const App = () => {
   } = useMUD();
 
   const [me, setMe] = useState("");
-  // const [inventories, setInventories] = useState([]);
-  // const [roommies, setRoomies] = useState([]);
-  
   const [showInventory, setShowInventory] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [showRoomItem, setShowRoomItem] = useState(false);
@@ -49,12 +47,6 @@ export const App = () => {
       try {
         const signer = await worldContract.signer?.getAddress();  
         setMe(signer);
-        // TODO find out why this cannot work
-        // const invItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 1})]);
-        // const rooItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 2})]); 
-    
-        // setInventories(invItems);
-        // setRoomies(rooItems);
       } catch (err) {
         console.error(err);
       }
@@ -64,6 +56,13 @@ export const App = () => {
     loadData();
   }, [worldContract.signer]);
 
+  console.log(me);
+  const room = "0x00000000000000000000000016c6b7427fa271a80a80c9936dd21c43d3c4a115";
+  const roomItems = useEntityQuery([HasValue(Location, {room: room, locationType: 2})]);
+  // TODO fix async so we don't need to hardcode
+  // const invItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 1})]);
+  console.log("hi", roomItems);
+  
   const handleClose = () => {
     console.log('handleClose');
     setShowInventory(false);

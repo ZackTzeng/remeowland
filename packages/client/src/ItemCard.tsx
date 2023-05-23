@@ -10,10 +10,11 @@ import { useMUD } from "./MUDContext";
 
 type Props = {
     id: number;
+    itemId: string;
     showPrice?: boolean;
 }
 
-export default function ItemCard({id, showPrice = true}: Props) {
+export default function ItemCard({id, itemId, showPrice = true}: Props) {
 
   const [img = "/assets/default.svg", setImg] = useState("");
   const [name = "Item Name", setName] = useState("");
@@ -60,7 +61,8 @@ export default function ItemCard({id, showPrice = true}: Props) {
   
   const placeItem = async () => {
     try {
-      await addItemToRoom(id.toString(), 300, 300);
+      console.log(itemId, "adding");
+      await addItemToRoom(itemId, 300, 300);
     } catch (e) {
       console.error(e);
     }
