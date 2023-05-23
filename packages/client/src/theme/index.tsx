@@ -73,6 +73,7 @@ export const Title = styled.span`
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
+  background: url("/assets/logo.svg") no-repeat center;
 `;
 
 export const Subtitle = styled.span`

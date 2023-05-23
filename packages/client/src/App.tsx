@@ -24,6 +24,7 @@ import { useMUD } from "./MUDContext";
 import { useEntityQuery } from "@latticexyz/react";
 import { runQuery, Has, HasValue, getComponentValueStrict } from "@latticexyz/recs";
 import { entityToBytes32 } from "./utils";
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export const App = () => {
 
@@ -125,13 +126,16 @@ export const App = () => {
     <Container>
       <AppContainer>
         <HeaderDiv>
-          <Title>Meowland</Title>
-          <Subtitle>Meows x Mud x Magic x More</Subtitle>
+          <Title> 
+            <a href="https://github.com/ZackTzeng/remeowland" target="_blank"><GitHubIcon /></a>
+          </Title>
+          <Subtitle>🐾 Meows x MUD = Miracles 🐾</Subtitle>
+          
         </HeaderDiv>
         {roomItemObjs.map((roomItemObj) => (
           <RoomItem mudId={roomItemObj.mudId} itemTypeId={roomItemObj.itemTypeId} x={roomItemObj.x} y={roomItemObj.y}  />
         ))}
-        <RoomCat id={0} x={0} y={0} showRoomItem={true} />
+        <RoomCat id={0} x={100} y={200} showRoomItem={true} />
         <Card>
         <Grid container spacing={2}>
           <Grid item xs={5}>
@@ -189,8 +193,7 @@ export const App = () => {
           room={room}
         />
         <Footer>
-          <TextLink href="https://ethglobal.com/events/autonomous">Meowland is with MUD created during Autonomous Worlds. Thank you ETHGlobal.</TextLink>
-          {/* Meowland is created with <TextLink href="https://v2.mud.dev">MUD</TextLink> during <TextLink href="https://ethglobal.com/events/autonomous">Autonomous World</TextLink>. Thank you <TextLink href="https://ethglobal.com/">ETHGobal</TextLink>.     */}
+          <TextLink href="https://ethglobal.com/events/autonomous"> Meowland is with MUD created during Autonomous Worlds. Thank you ETHGlobal. </TextLink>
         </Footer>
       </AppContainer>
     </Container>

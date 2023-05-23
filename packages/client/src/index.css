@@ -53,3 +53,7 @@ div.MuiGrid-root {
 div.MuiGrid-root.MuiGrid-container {
   height: 750px;
 }
+
+svg {
+  color: pink;
+}

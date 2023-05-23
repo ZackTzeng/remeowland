@@ -25,6 +25,7 @@
     "@latticexyz/std-client": "2.0.0-alpha.1.148",
     "@latticexyz/utils": "2.0.0-alpha.1.148",
     "@latticexyz/world": "2.0.0-alpha.1.148",
+    "@mui/icons-material": "^5.11.16",
     "@mui/lab": "5.0.0-alpha.130",
     "@mui/material": "^5.13.1",
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
