@@ -70,6 +70,15 @@ export const GenericRoomItem = styled.div`
 `;
 //background: url("/assets/default.svg") no-repeat center;
 
+export const GenericRoomCat = styled.div`
+  position: absolute;
+
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  z-index: 2;
+`;
+
 export const Title = styled.span`
   color: #E4E2D7;
   font-style: normal;

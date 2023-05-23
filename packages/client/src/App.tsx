@@ -14,6 +14,7 @@ import {
 } from "./theme";
 import Button from '@mui/material/Button';
 import { ItemDisplayModal } from "./ItemDisplayModal";
+// import RoomItem from "./RoomItemOLD";
 import RoomItem from "./RoomItem";
 import RoomCat from "./RoomCat";
 import TextField from '@mui/material/TextField';
@@ -96,44 +97,42 @@ export const App = () => {
           <Title>Meowland</Title>
           <Subtitle>Meows x Mud x Magic x More</Subtitle>
         </HeaderDiv>
+        
         <Card>
-        <RoomItem id={1} x={10} y={0}  />
-        <RoomCat id={0} x={0} y={0} showRoomItem={true} />
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Button variant="contained">Frens</Button>
-            <Button variant="contained">Badges</Button>
-            <Button variant="contained" onClick={handleOpenInventory}>Inventory</Button>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Button variant="contained">Frens</Button>
+              <Button variant="contained">Badges</Button>
+              <Button variant="contained" onClick={handleOpenInventory}>Inventory</Button>
+            </Grid>
+            <Grid item xs={2}>
+            </Grid>
+            <Grid item xs={4}>
+              {/* <TextField fullWidth label="visit room" id="visit" /> */}
+            </Grid>
+            <Grid item xs={2}>
+            </Grid>
+            <Grid item xs={8}>
+              
+              <ScreenDiv>
+                {showEmptyText?"":
+                  `Welcome to your living room. 
+                  It seems a little bit empty.
+                  Care to amplify the ambiance with a feline friend?`
+                }
+              </ScreenDiv>         
+              
+            </Grid>
+            <Grid item xs={2}>
+            </Grid>
+            <Grid item xs={3}>
+            </Grid>
+            <Grid item xs={6}>
+              <Button fullWidth variant="contained" onClick={handleOpenShop}>Shop Some Goodies!</Button>
+            </Grid>
+            <Grid item xs={3}>
+            </Grid>
           </Grid>
-          <Grid item xs={2}>
-          </Grid>
-          <Grid item xs={4}>
-            {/* <TextField fullWidth label="visit room" id="visit" /> */}
-          </Grid>
-          <Grid item xs={2}>
-          </Grid>
-          <Grid item xs={8}>
-            
-            <ScreenDiv>
-              {showEmptyText?"":
-                `Welcome to your living room. 
-                It seems a little bit empty.
-                Care to amplify the ambiance with a feline friend?`
-              }
-            </ScreenDiv>         
-            
-          </Grid>
-          <Grid item xs={2}>
-          </Grid>
-          <Grid item xs={3}>
-          </Grid>
-          <Grid item xs={6}>
-            <Button fullWidth variant="contained" onClick={handleOpenShop}>Shop Some Goodies!</Button>
-          </Grid>
-          <Grid item xs={3}>
-          </Grid>
-        </Grid>
-          
         </Card>
         <ItemDisplayModal
           open={showInventory}
@@ -146,6 +145,9 @@ export const App = () => {
           onClose={handleClose}
           signer={me}
         />
+        
+        <RoomCat catid={0} x={0} y={0} showRoomItem={true} />
+        <RoomItem itemid={0} x={0} y={0}/>
         <Footer>
           <TextLink href="https://ethglobal.com/events/autonomous">Meowland is with MUD created during Autonomous Worlds. Thank you ETHGlobal.</TextLink>
           {/* Meowland is created with <TextLink href="https://v2.mud.dev">MUD</TextLink> during <TextLink href="https://ethglobal.com/events/autonomous">Autonomous World</TextLink>. Thank you <TextLink href="https://ethglobal.com/">ETHGobal</TextLink>.     */}

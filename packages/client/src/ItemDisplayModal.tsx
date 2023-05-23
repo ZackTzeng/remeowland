@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import { NUM_SHOPITEMS } from "./constants";
 import ItemCard from "./ItemCard";
+import Draggable from 'react-draggable';
 
 import { useMUD } from "./MUDContext";
 import { useEntityQuery } from "@latticexyz/react";
@@ -31,7 +32,6 @@ const style = {
 };
 
 export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) {
-
   const {
     components: {
       Item,
