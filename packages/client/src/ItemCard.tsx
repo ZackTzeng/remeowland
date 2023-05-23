@@ -62,7 +62,7 @@ export function ItemCard({id, itemId, showPrice = true}: Props) {
   const placeItem = async () => {
     try {
       console.log(itemId, "adding");
-      await addItemToRoom(itemId, 300, 300);
+      await addItemToRoom(itemId, 0, 0);
     } catch (e) {
       console.error(e);
     }
@@ -89,7 +89,7 @@ export function ItemCard({id, itemId, showPrice = true}: Props) {
         <Button size="small" onClick={showPrice? buyItem : placeItem}>
 
           {showPrice?
-            "Buy for " + price + " Meows!" :
+            "Buy for " + String(Number(price)*(-1)) + " Meows!" :
             "Place in room!"
           }
         </Button>
