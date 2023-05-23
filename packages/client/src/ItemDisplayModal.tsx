@@ -44,6 +44,9 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
   if (isShop) {
     // list out all items 
     items = [...Array(NUM_SHOPITEMS).keys()];
+    items = items.map((id) => {
+      return {itemType: id, itemId: ""};
+    })
   } else {
     try {
 
@@ -52,8 +55,9 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
       // const ids = useEntityQuery([HasValue(Location, {room: entityToBytes32(signer), locationType: 1})]);
       const room = "0x00000000000000000000000016c6b7427fa271a80a80c9936dd21c43d3c4a115";
       items = useEntityQuery([HasValue(Location, {room: room, locationType: 1})]).map((id) => {
-        return getComponentValueStrict(Item, id).value;
+        return {itemType: getComponentValueStrict(Item, id).value, itemId: id};
       });
+      console.log(items);
     } catch(error) {
       console.log(error);
       items = [];
@@ -68,7 +72,7 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
       <Box sx={style}>
         <Masonry columns={4} spacing={2}>
           {items.map((i) => (
-            <ItemCard id={i} showPrice={isShop}> </ItemCard>  
+            <ItemCard id={i.itemType} showPrice={isShop} itemId={i.itemId}> </ItemCard>  
           ))}
         </Masonry>
       </Box>
