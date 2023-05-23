@@ -33,6 +33,9 @@ export const App = () => {
       Position,
       Location,
     },
+    systemCalls: {
+      visitRoom,
+    },
     network: { worldContract },
   } = useMUD();
 
@@ -41,18 +44,18 @@ export const App = () => {
   const [showShop, setShowShop] = useState(false);
   const [showRoomItem, setShowRoomItem] = useState(false);
   const [showEmptyText, setShowEmptyText] = useState(true);
+  const [searchText, setSearchText] = useState("Wallet Address");
 
   useEffect(() => {
     async function loadData() {
       try {
         const signer = await worldContract.signer?.getAddress();  
         setMe(signer);
+        setSearchText(signer.toLowerCase());
       } catch (err) {
         console.error(err);
       }
-
     }
-
     loadData();
   }, [worldContract.signer]);
  
@@ -81,6 +84,20 @@ export const App = () => {
 
   }
 
+  const searchQuery = async () => {
+    console.log(`Visiting player ${searchText}`);
+    visitRoom(searchText);
+    setMe(searchText);
+  }
+  
+  const validateAndSetSearch = async (room: string) => {
+    if (room.length == 42) {
+      setSearchText(room.toLowerCase());
+    } else {
+      setSearchText(me.toLowerCase());
+    }
+  }
+
 
   return (
     <Container>
@@ -93,15 +110,21 @@ export const App = () => {
         <RoomItem id={1} x={10} y={0}  />
         <RoomCat id={0} x={0} y={0} showRoomItem={true} />
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <Button variant="contained">Frens</Button>
             <Button variant="contained">Badges</Button>
             <Button variant="contained" onClick={handleOpenInventory}>Inventory</Button>
           </Grid>
-          <Grid item xs={2}>
-          </Grid>
-          <Grid item xs={4}>
-            {/* <TextField fullWidth label="visit room" id="visit" /> */}
+          <Grid item xs={7}>
+            <TextField 
+              type="search" label="Go to" 
+              value={searchText} 
+              onInput={(e) => {
+                validateAndSetSearch(e.target.value);
+              }}
+              id="visit" 
+              />
+            <Button variant="contained" id="search" onClick={searchQuery}>🔍</Button>
           </Grid>
           <Grid item xs={2}>
           </Grid>

@@ -21,8 +21,29 @@ button.MuiButtonBase-root:hover {
   cursor: pointer;
 }
 
-div.MuiInputBase-root {
+button#search {
+  background: #E4E2D7;
+  color: #293347;
+  border-radius: 100px;
+  cursor: pointer;
+  margin: 6px;
+  padding: 0px;
+  border: 2px;
   height: 36.5px;
+  width: 20.5px;
+}
+
+button#search:hover {
+  background: #C292FF;
+  color: #293347;
+  cursor: pointer;
+}
+
+div.MuiInputBase-root {
+  margin: 5px 0px;
+  height: 42px;
+  width: 460px;
+  background: #E4E2D7;
 }
 
 div.MuiGrid-root {
@@ -30,5 +51,5 @@ div.MuiGrid-root {
 }
 
 div.MuiGrid-root.MuiGrid-container {
-  height: 750px;
+  height: 850px;
 }

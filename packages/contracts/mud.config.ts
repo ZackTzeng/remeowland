@@ -74,15 +74,15 @@ export default mudConfig({
       root: true,
       args: [],
     }
-  //   {
-  //     name: "KeysInTableModule",
-  //     root: true,
-  //     args: [resolveTableId("Cat")],
-  //   },
-  //   {
-  //     name: "KeysInTableModule",
-  //     root: true,
-  //     args: [resolveTableId("Shelter")],
-  //   },
+    // {
+    //   name: "KeysInTableModule",
+    //   root: true,
+    //   args: [resolveTableId("Cat")],
+    // },
+    // {
+    //   name: "KeysInTableModule",
+    //   root: true,
+    //   args: [resolveTableId("Shelter")],
+    // },
   ],
 });

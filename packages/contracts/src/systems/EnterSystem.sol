@@ -27,7 +27,7 @@ contract EnterSystem is System {
    * Viewing a room triggers stats computation
    * @param room - room to visit
    */
-  function vistRoom(bytes32 room) public {
+  function visitRoom(bytes32 room) public {
 
     // Schrödinger's cat - no observer means uncertainty and don't care what's going on
     bytes32 player = addressToEntity(_msgSender());
@@ -88,7 +88,7 @@ contract EnterSystem is System {
    * @param affinity - normalized affinity
    * @param dTime - time since last visit
    */
-  function computeCatAndItems(uint32 affinity, uint256 dTime, uint32 totalCats) public returns (uint32[2] memory) {
+  function computeCatAndItems(uint32 affinity, uint256 dTime, uint32 totalCats) public pure returns (uint32[2] memory) {
     // for the sake of hackathon, we will do a simple version
     // TODO future - can use poisson distribution and gaussian function
     uint32 dBlocknumber = 30;

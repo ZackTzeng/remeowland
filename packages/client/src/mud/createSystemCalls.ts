@@ -20,14 +20,21 @@ export function createSystemCalls(
 
   const addItemToRoom = async (id: string, x: number, y: number) => {
     const tx = await worldSend("addItemToRoom", [
-      entityToBytes32(id),
+      entityToBytes32(id).toLowerCase(), // TODO do we need to lowercase it
       x.toString(),
       y.toString(),
+    ]);
+  };
+
+  const visitRoom = async (room: string) => {
+    const tx = await worldSend("visitRoom", [
+      room.toLowerCase()
     ]);
   };
 
   return {
     acquireItem,
     addItemToRoom,
+    visitRoom,
   };
 }
