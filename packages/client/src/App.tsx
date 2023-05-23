@@ -60,26 +60,46 @@ export const App = () => {
   const roomItems = useEntityQuery([HasValue(Location, {room: room, locationType: 2})]);
   
   const handleClose = () => {
-    console.log('handleClose');
     setShowInventory(false);
     setShowShop(false);
   }
   const handleOpenInventory = () => {
-    console.log('handleOpenInventory');
     setShowInventory(true);
   }
   const handleOpenShop = () => {
-    console.log('handleOpenShop');
     setShowShop(true);
   }
   const hideEmptyText = () => {
-    console.log('hide empty text');
     setShowEmptyText(false);
   }
+  // const displayEmptyText = () => {
+  //   setShowEmptyText(true);
+  // }
 
   function RoomItemCallback() {
 
   }
+
+  type Results = {
+    mudId: string;
+    itemTypeId: number;
+    x: number;
+    y: number;
+  }
+
+  let roomItemObjs: Results[];
+  roomItemObjs = roomItems.map((itemId) => {
+    let position = getComponentValueStrict(Position, itemId)
+    let itemTypeId = getComponentValueStrict(Item, itemId).value
+    return {mudId: itemId, itemTypeId: itemTypeId, x: position.x, y: position.y}
+  })
+
+  console.log('roomItems:', roomItems)
+  let positions = roomItems.map((itemId) => {
+    return getComponentValueStrict(Position, itemId);
+  })
+  console.log('position', positions)
+ 
 
 
   return (
@@ -89,9 +109,11 @@ export const App = () => {
           <Title>Meowland</Title>
           <Subtitle>Meows x Mud x Magic x More</Subtitle>
         </HeaderDiv>
-        <Card>
-        <RoomItem id={1} x={10} y={0}  />
+        {roomItemObjs.map((roomItemObj) => (
+          <RoomItem mudId={roomItemObj.mudId} itemTypeId={roomItemObj.itemTypeId} x={roomItemObj.x} y={roomItemObj.y}  />
+        ))}
         <RoomCat id={0} x={0} y={0} showRoomItem={true} />
+        <Card>
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <Button variant="contained">Frens</Button>
@@ -108,7 +130,7 @@ export const App = () => {
           <Grid item xs={8}>
             
             <ScreenDiv>
-              {showEmptyText?"":
+              {roomItems.length > 0?"":
                 `Welcome to your living room. 
                 It seems a little bit empty.
                 Care to amplify the ambiance with a feline friend?`

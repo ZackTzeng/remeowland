@@ -7,16 +7,15 @@ import Draggable from "react-draggable";
 
 
 type Props = {
-  id: number;
+  mudId: string;
+  itemTypeId: number;
   x: number;
   y: number;
 }
 
-export default function RoomItem({id, x, y}: Props) {
+export default function RoomItem({mudId, itemTypeId, x, y}: Props) {
 
   const [img, setImg] = useState("/assets/default.svg");
-  const [roomX, setRoomX] = useState(10);
-  const [roomY, setRoomY] = useState(10);
 
   const SpecificRoomItem = styled(GenericRoomItem)`
     left: ${x}px;
@@ -27,14 +26,12 @@ export default function RoomItem({id, x, y}: Props) {
   useEffect(() => {
     async function loadData() {
       try {
-        const metadataUri = NFT_STORAGE_SHOPITEMS + id.toString();
+        const metadataUri = NFT_STORAGE_SHOPITEMS + itemTypeId.toString();
         const response = await fetch(metadataUri);
         const json = await response.json();
         let img = json.image;
         img = img.replace(/ipfs/, "https") + ".ipfs.nftstorage.link";
         setImg(img);
-        setRoomX(x);
-        setRoomY(y);
       } catch (err) {
         console.error(err);
       }

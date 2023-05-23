@@ -56,11 +56,11 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
     try {       
       const room = entityToBytes32(signer).toLowerCase();
       const idTypes = useEntityQuery([HasValue(Location, {room: room, locationType: 1})]);
-      console.log(idTypes,"1");
+      
       items = idTypes.map((id) => {
         return {itemType: getComponentValueStrict(Item, id).value, itemId: id};
       });
-      console.log("items",items);
+      
     } catch(error) {
       console.log(error);
       items = [];
