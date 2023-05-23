@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NFT_STORAGE_CATS } from "./constants";
 import styled, { css } from "styled-components";
-import { GenericRoomItem } from "./theme/index";
+import { GenericRoomCat } from "./theme/index";
 
 type Props = {
   id: number;
@@ -16,7 +16,7 @@ export default function RoomItem({id, x, y}: Props) {
   const [roomX, setRoomX] = useState(10);
   const [roomY, setRoomY] = useState(10);
 
-  const SpecificRoomItem = styled(GenericRoomItem)`
+  const SpecificRoomItem = styled(GenericRoomCat)`
     left: ${x}px;
     bottom: ${y}px;
     background: url("${img}") no-repeat center;

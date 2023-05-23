@@ -63,12 +63,21 @@ export const ScreenDiv = styled(FlexContainer)`
 export const GenericRoomItem = styled.div`
   position: absolute;
 
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   object-fit: cover;
   z-index: 2;
 `;
 //background: url("/assets/default.svg") no-repeat center;
+
+export const GenericRoomCat = styled.div`
+  position: absolute;
+
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  z-index: 2;
+`;
 
 export const Title = styled.span`
   color: #E4E2D7;

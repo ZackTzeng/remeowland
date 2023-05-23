@@ -1,4 +1,4 @@
-export const NFT_STORAGE_SHOPITEMS="https://bafybeidyn66slqsg5o6wlfm7nrohiifrsrx4kwg6blleexd6reczbtvp34.ipfs.nftstorage.link/";
+export const NFT_STORAGE_SHOPITEMS="https://bafybeih4at3lgwk22mij45wvb2bkx24lyfjp73o2jumzhr2l4dfcrgp5nq.ipfs.nftstorage.link/";
 export const NUM_SHOPITEMS=3;
 export const NFT_STORAGE_CATS="https://bafybeideitvdoqqon4mo5ysn2s5cig2z3fdjbdubd65ng44couz6hdaiyq.ipfs.nftstorage.link/"
 export const NUM_CATS=2;
