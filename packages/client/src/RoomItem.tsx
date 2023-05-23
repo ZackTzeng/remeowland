@@ -3,7 +3,7 @@ import { NFT_STORAGE_SHOPITEMS } from "./constants";
 import styled, { css } from "styled-components";
 import { GenericRoomItem } from "./theme/index";
 import Draggable from "react-draggable";
-
+import { useMUD } from "./MUDContext";
 
 
 type Props = {
@@ -14,6 +14,21 @@ type Props = {
 }
 
 export default function RoomItem({mudId, itemTypeId, x, y}: Props) {
+
+  const [locX, setLocX] = useState();
+  const [locY, setLocY] = useState();
+
+  const {
+    components: {
+      Item,
+      Position,
+      Location,
+    },
+    systemCalls: {
+      moveRoomItem,
+    },
+    network: { worldContract },
+  } = useMUD();
 
   const [img, setImg] = useState("/assets/default.svg");
 
@@ -40,12 +55,20 @@ export default function RoomItem({mudId, itemTypeId, x, y}: Props) {
 
   }, []);
 
-  
+  const updateRoomItemPosition = async (e, data) => {
+    // try {
+    //   await moveRoomItem(moveRoomItem, )
+    // }
+    console.log('x: ', data.x);
+    console.log('y: ', data.y);
+    moveRoomItem(mudId, data.x, data.y)
+  }
 
   return (
         <div>
           <Draggable
             defaultPosition={{x: 200, y: 400}}
+            onStop={updateRoomItemPosition}
           >
             <div>
             <SpecificRoomItem />
