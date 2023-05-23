@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
 import { NUM_SHOPITEMS } from "./constants";
-import ItemCard from "./ItemCard";
+import { ItemCard } from "./ItemCard";
 
 import { useMUD } from "./MUDContext";
 import { useEntityQuery } from "@latticexyz/react";
@@ -40,11 +40,16 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
     },
   } = useMUD();
   
-  let items;
+  type Results = {
+    itemType: number;
+    itemId: string;
+  }
+
+  let items : Results[];
   if (isShop) {
     // list out all items 
-    items = [...Array(NUM_SHOPITEMS).keys()];
-    items = items.map((id) => {
+    const idTypes = [...Array(NUM_SHOPITEMS).keys()];
+    items = idTypes.map((id) => {
       return {itemType: id, itemId: ""};
     })
   } else {
@@ -53,11 +58,13 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
       // get it from MUD store
       // TODO fix async so we don't need to hardcode
       // const ids = useEntityQuery([HasValue(Location, {room: entityToBytes32(signer), locationType: 1})]);
-      const room = "0x00000000000000000000000016c6b7427fa271a80a80c9936dd21c43d3c4a115";
-      items = useEntityQuery([HasValue(Location, {room: room, locationType: 1})]).map((id) => {
+      const room = "0x000000000000000000000000b19E9309b041b386cC509Ec192b9B726c5f85134";
+      const idTypes = useEntityQuery([HasValue(Location, {room: room, locationType: 1})]);
+      console.log(idTypes,"1");
+      items = idTypes.map((id) => {
         return {itemType: getComponentValueStrict(Item, id).value, itemId: id};
       });
-      console.log(items);
+      console.log("items",items);
     } catch(error) {
       console.log(error);
       items = [];
@@ -72,7 +79,7 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
       <Box sx={style}>
         <Masonry columns={4} spacing={2}>
           {items.map((i) => (
-            <ItemCard id={i.itemType} showPrice={isShop} itemId={i.itemId}> </ItemCard>  
+            <ItemCard id={i.itemType} itemId={i.itemId} showPrice={isShop}> </ItemCard>  
           ))}
         </Masonry>
       </Box>

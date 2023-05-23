@@ -14,7 +14,7 @@ type Props = {
     showPrice?: boolean;
 }
 
-export default function ItemCard({id, itemId, showPrice = true}: Props) {
+export function ItemCard({id, itemId, showPrice = true}: Props) {
 
   const [img = "/assets/default.svg", setImg] = useState("");
   const [name = "Item Name", setName] = useState("");

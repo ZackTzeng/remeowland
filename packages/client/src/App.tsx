@@ -57,10 +57,12 @@ export const App = () => {
   }, [worldContract.signer]);
 
   console.log(me);
-  const room = "0x00000000000000000000000016c6b7427fa271a80a80c9936dd21c43d3c4a115";
+  console.log(entityToBytes32(me));
+  const room = "0x000000000000000000000000b19E9309b041b386cC509Ec192b9B726c5f85134";
+  // const room = "0x000000000000000000000000b19E9309b041b386cC509Ec192b9B726c5f85134";
   const roomItems = useEntityQuery([HasValue(Location, {room: room, locationType: 2})]);
   // TODO fix async so we don't need to hardcode
-  // const invItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 1})]);
+  // const roomItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 2})]);
   console.log("hi", roomItems);
   
   const handleClose = () => {
