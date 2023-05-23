@@ -55,15 +55,9 @@ export const App = () => {
 
     loadData();
   }, [worldContract.signer]);
-
-  console.log(me);
-  console.log(entityToBytes32(me));
-  const room = "0x0000000000000000000000005474f70ca52c23000c2032be69fd037330ccf851";
-  // const room = "0x000000000000000000000000b19E9309b041b386cC509Ec192b9B726c5f85134";
+ 
+  const room = entityToBytes32(me).toLowerCase();
   const roomItems = useEntityQuery([HasValue(Location, {room: room, locationType: 2})]);
-  // TODO fix async so we don't need to hardcode
-  // const roomItems = useEntityQuery([HasValue(Location, {room: entityToBytes32(me), locationType: 2})]);
-  console.log("hi", roomItems);
   
   const handleClose = () => {
     console.log('handleClose');
@@ -86,8 +80,6 @@ export const App = () => {
   function RoomItemCallback() {
 
   }
-
-  
 
 
   return (
