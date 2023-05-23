@@ -26,8 +26,17 @@ export function createSystemCalls(
     ]);
   };
 
+  const moveRoomItem = async (mudId: string, newX: number, newY: number) => {
+    const tx = await worldSend("moveItem", [
+      entityToBytes32(mudId),
+      newX.toString(),
+      newY.toString(),
+    ]);
+  }
+
   return {
     acquireItem,
     addItemToRoom,
+    moveRoomItem,
   };
 }

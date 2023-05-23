@@ -21,10 +21,6 @@ export function ItemCard({id, itemId, showPrice = true}: Props) {
   const [description = "Item Description", setDescription] = useState("");
   const [price = 0, setPrice] = useState("");
 
-  function placeToRoom() {
-
-  }
-
   useEffect(() => {
     async function loadData() {
       try {
@@ -48,7 +44,7 @@ export function ItemCard({id, itemId, showPrice = true}: Props) {
     systemCalls: {
       acquireItem,
       addItemToRoom,
-    }
+    },
   } = useMUD();
 
   const buyItem = async () => {

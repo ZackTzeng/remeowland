@@ -100,7 +100,11 @@ export const App = () => {
   })
   console.log('position', positions)
  
+  // cat x:55 y:215
+  // item x:-75 y 738
 
+  // cat 
+  // item x:200 y:400
 
   return (
     <Container>
@@ -112,7 +116,7 @@ export const App = () => {
         {roomItemObjs.map((roomItemObj) => (
           <RoomItem mudId={roomItemObj.mudId} itemTypeId={roomItemObj.itemTypeId} x={roomItemObj.x} y={roomItemObj.y}  />
         ))}
-        <RoomCat id={0} x={0} y={0} showRoomItem={true} />
+        <RoomCat id={0} x={-118} y={438} showRoomItem={true} />
         <Card>
         <Grid container spacing={2}>
           <Grid item xs={6}>
