@@ -42,3 +42,24 @@ By combining the engaging aspects of room decoration, animal interaction, and a 
 
 1. [Lattice MUD v2 x ReactJS](https://v2.mud.dev/)
 2. [NFT.Storage]( NFT.Storage)
+
+### Future Work:
+
+Some ideas of what we can do in the future...
+
+1. Roll-up less significant transactions (e.g. item rearranging within your room) onto L2 and sending only the final states on L1.
+
+2. Connect with external wallet (currently burner wallet only persist as long as the localStorage).
+
+3. Implement achievement badges and leaderboard system to further incentivize players (boost cat affinity to your room)!
+
+4. Replace block-number based pseudorandomness with Chainlink VRF.
+
+5. Friend features. Allow players to add each other as friends and add features based on the friend list.
+
+6. Album features to capture in-game moments and videos for players to mint and keep as NFT collectibles.
+
+7. On a regular basis, autoscrape data and update automatically from real-world cat shelters and generate a 1-1 mapping of cat profiles.
+
+8. Expand the autonomous world to other animals! 
+

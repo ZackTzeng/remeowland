@@ -58,10 +58,10 @@ export default function RoomItem({mudId, itemTypeId, x, y}: Props) {
   const updateRoomItemPosition = async (e, data) => {
     // try {
     //   await moveRoomItem(moveRoomItem, )
-    // }
-    console.log('x: ', data.x);
-    console.log('y: ', data.y);
-    moveRoomItem(mudId, data.x, data.y)
+    // // }
+    // console.log('x: ', data.x);
+    // console.log('y: ', data.y);
+    // await moveRoomItem(mudId, data.x, data.y)
   }
 
   return (
