@@ -58,7 +58,7 @@ export const App = () => {
 
   console.log(me);
   console.log(entityToBytes32(me));
-  const room = "0x000000000000000000000000b19E9309b041b386cC509Ec192b9B726c5f85134";
+  const room = "0x0000000000000000000000005474f70ca52c23000c2032be69fd037330ccf851";
   // const room = "0x000000000000000000000000b19E9309b041b386cC509Ec192b9B726c5f85134";
   const roomItems = useEntityQuery([HasValue(Location, {room: room, locationType: 2})]);
   // TODO fix async so we don't need to hardcode

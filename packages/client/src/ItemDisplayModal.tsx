@@ -58,7 +58,7 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
       // get it from MUD store
       // TODO fix async so we don't need to hardcode
       // const ids = useEntityQuery([HasValue(Location, {room: entityToBytes32(signer), locationType: 1})]);
-      const room = "0x000000000000000000000000b19E9309b041b386cC509Ec192b9B726c5f85134";
+      const room = "0x0000000000000000000000005474f70ca52c23000c2032be69fd037330ccf851";
       const idTypes = useEntityQuery([HasValue(Location, {room: room, locationType: 1})]);
       console.log(idTypes,"1");
       items = idTypes.map((id) => {
