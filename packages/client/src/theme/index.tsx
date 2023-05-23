@@ -60,7 +60,7 @@ export const GenericRoomItem = styled.div`
 
 export const GenericRoomCat = styled.div`
   position: absolute;
-
+  
   height: 150px;
   width: 150px;
   object-fit: cover;

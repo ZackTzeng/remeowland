@@ -120,6 +120,12 @@ export const App = () => {
   })
   console.log('position', positions)
  
+  // cat x:55 y:215
+  // item x:-75 y 738
+
+  // cat x:345 y:535
+  // item x:200 y:400
+
 
 
   return (
