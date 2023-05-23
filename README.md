@@ -1,10 +1,10 @@
-# Meowland
+# 🐾 Meowland 🐾 
 
 EthGlobal - Autonomous World.
 Powered by MUD.
 
 ![Screenshot](screenshot.png)
-![Screenshot](screenshot1.png)
+![Screenshot](screenshot2.png)
 
 ### Room Building and Decoration:
 Players start with a basic room and can gradually expand and decorate it. Provide a wide range of furniture, decorations, and themes for players to choose from. Let them customize their rooms to create attractive spaces for the animals to visit.
@@ -28,3 +28,17 @@ Foster a sense of community among players by incorporating social features. Play
 Regularly gather feedback from the player community to identify areas for improvement and new features to add. Actively engage with players through forums, social media, or in-game feedback channels. Use this feedback to guide the development of updates, ensuring the game stays fresh and appealing to players over time.
 
 By combining the engaging aspects of room decoration, animal interaction, and a purposeful real-world impact, Meowland has the potential to captivate players and make a positive difference in the lives of animals.
+
+### Team: 
+
+- Anne Krauwer - Visual Designer
+- Emma Hsueh - Developer
+- Luis Carranza - Business Dev
+- Wendy van der Waal - UI/UX Designer
+- Zack Tzeng - Developer
+
+
+### Technologies:
+
+1. [Lattice MUD v2 x ReactJS](https://v2.mud.dev/)
+2. [NFT.Storage]( NFT.Storage)
