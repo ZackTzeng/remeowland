@@ -49,17 +49,6 @@ export const ScreenDiv = styled(FlexContainer)`
 
 `;
 
-// export const Tree = styled.div`
-//   position: absolute;
-//   bottom: 150px;
-//   left: 50px;
-//   height: 400px;
-//   width: 400px;
-//   object-fit: cover;
-//   z-index: 2;
-//   background: url("/assets/default.svg") no-repeat center;
-// `;
-
 export const GenericRoomItem = styled.div`
   position: absolute;
 
@@ -68,7 +57,6 @@ export const GenericRoomItem = styled.div`
   object-fit: cover;
   z-index: 2;
 `;
-//background: url("/assets/default.svg") no-repeat center;
 
 export const GenericRoomCat = styled.div`
   position: absolute;

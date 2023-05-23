@@ -18,13 +18,15 @@ export function createSystemCalls(
     ]);
   };
 
-  const addItemToRoom = async (id: string, x: number, y: number) => {
+  const addItemToRoom = async (id: string, room: string, x: number, y: number) => {
     const tx = await worldSend("addItemToRoom", [
-      entityToBytes32(id),
+      entityToBytes32(id).toLowerCase(), // TODO do we need to lowercase it
+      entityToBytes32(room).toLowerCase(),
       x.toString(),
       y.toString(),
     ]);
   };
+
 
   const moveRoomItem = async (mudId: string, newX: number, newY: number) => {
     const tx = await worldSend("moveItem", [
@@ -34,9 +36,20 @@ export function createSystemCalls(
     ]);
   }
 
+  const visitRoom = async (room: string) => {
+    const tx = await worldSend("visitRoom", [
+      room.toLowerCase()
+    ]);
+  };
+
+
   return {
     acquireItem,
     addItemToRoom,
+
     moveRoomItem,
+
+    visitRoom,
+
   };
 }

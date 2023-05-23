@@ -11,11 +11,14 @@ import { HasValue, getComponentValueStrict } from "@latticexyz/recs";
 import { entityToBytes32 } from "./utils";
 import { useEffect } from "react";
 
+import{ ScreenDiv } from "./theme";
+
 type Props = {
   open: boolean;
   onClose: () => void;
   isShop?: boolean;
   signer: string;
+  room: string;
 }
 
 const style = {
@@ -31,7 +34,7 @@ const style = {
   p: 4,
 };
 
-export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) {
+export function ItemDisplayModal({open, onClose, isShop = true, signer, room}: Props) {
 
   const {
     components: {
@@ -54,8 +57,8 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
     })
   } else {
     try {       
-      const room = entityToBytes32(signer).toLowerCase();
-      const idTypes = useEntityQuery([HasValue(Location, {room: room, locationType: 1})]);
+      const wallet = entityToBytes32(signer).toLowerCase();
+      const idTypes = useEntityQuery([HasValue(Location, {room: wallet, locationType: 1})]);
       
       items = idTypes.map((id) => {
         return {itemType: getComponentValueStrict(Item, id).value, itemId: id};
@@ -73,11 +76,17 @@ export function ItemDisplayModal({open, onClose, isShop = true, signer}: Props) 
       onClose={onClose}
     >
       <Box sx={style}>
+        {items.length > 0 ?
         <Masonry columns={4} spacing={2}>
           {items.map((i) => (
-            <ItemCard id={i.itemType} itemId={i.itemId} showPrice={isShop}> </ItemCard>  
+            <ItemCard id={i.itemType} itemId={i.itemId} showPrice={isShop} room={room}> </ItemCard>  
           ))}
         </Masonry>
+        :
+        <ScreenDiv>
+          🐱Nothing here yet...🐱
+        </ScreenDiv>
+        }
       </Box>
     </Modal>
   )
