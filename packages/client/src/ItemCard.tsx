@@ -12,9 +12,10 @@ type Props = {
     id: number;
     itemId: string;
     showPrice?: boolean;
+    room?: string;
 }
 
-export function ItemCard({id, itemId, showPrice = true}: Props) {
+export function ItemCard({id, itemId, showPrice = true, room}: Props) {
 
   const [img = "/assets/default.svg", setImg] = useState("");
   const [name = "Item Name", setName] = useState("");
@@ -62,7 +63,7 @@ export function ItemCard({id, itemId, showPrice = true}: Props) {
   const placeItem = async () => {
     try {
       console.log(itemId, "adding");
-      await addItemToRoom(itemId, 0, 0);
+      await addItemToRoom(itemId, room, 0, 0);
     } catch (e) {
       console.error(e);
     }

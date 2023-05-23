@@ -23,11 +23,13 @@ contract ItemSystem is System {
   /**
    * Add item to the room at position
    * @param item - id of item
+   * @param room - room to add to
    * @param x - x coordinate
    * @param y - y coordinate
    */
-  function addItemToRoom(bytes32 item, uint32 x, uint32 y) public {
-    bytes32 room = addressToEntity(_msgSender());
+  function addItemToRoom(bytes32 item, bytes32 room, uint32 x, uint32 y) public {
+    bytes32 player = addressToEntity(_msgSender());
+    require(OwnedBy.get(item) == player, "not yours");
     Location.set(item, room, LocationType(2));
     Position.set(item, room, x, y);
   }
@@ -69,6 +71,8 @@ contract ItemSystem is System {
    * @param y - y coord
    */
   function moveItem(bytes32 item, uint32 x, uint32 y) public {
+    bytes32 player = addressToEntity(_msgSender());
+    require(OwnedBy.get(item) == player, "not yours");
     bytes32 room = addressToEntity(_msgSender());
     Position.set(item, room, x, y);
   }

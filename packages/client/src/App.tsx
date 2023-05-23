@@ -45,22 +45,24 @@ export const App = () => {
   const [showRoomItem, setShowRoomItem] = useState(false);
   const [showEmptyText, setShowEmptyText] = useState(true);
   const [searchText, setSearchText] = useState("Wallet Address");
+  const [room, setRoom] = useState("");
 
   useEffect(() => {
     async function loadData() {
       try {
         const signer = await worldContract.signer?.getAddress();  
-        setMe(signer);
+        setMe(signer.toLowerCase());
+        setRoom(signer.toLowerCase());
         setSearchText(signer.toLowerCase());
       } catch (err) {
         console.error(err);
       }
     }
     loadData();
-  }, [worldContract.signer]);
+  }, []);
  
-  const room = entityToBytes32(me).toLowerCase();
-  const roomItems = useEntityQuery([HasValue(Location, {room: room, locationType: 2})]);
+  const roomBytes = entityToBytes32(room).toLowerCase();
+  const roomItems = useEntityQuery([HasValue(Location, {room: roomBytes, locationType: 2})]);
   
   const handleClose = () => {
     setShowInventory(false);
@@ -86,7 +88,7 @@ export const App = () => {
   const searchQuery = async () => {
     console.log(`Visiting player ${searchText}`);
     visitRoom(searchText);
-    setMe(searchText);
+    setRoom(searchText);
   }
   
   const validateAndSetSearch = async (room: string) => {
@@ -154,9 +156,9 @@ export const App = () => {
             
             <ScreenDiv>
               {roomItems.length > 0?"":
-                `Welcome to your living room. 
+                `Welcome to ${room == me? "your":room.substring(0,6)} living room. 
                 It seems a little bit empty.
-                Care to amplify the ambiance with a feline friend?`
+                Care to amplify the ambiance somehow?`
               }
             </ScreenDiv>         
             
@@ -178,11 +180,13 @@ export const App = () => {
           onClose={handleClose}
           isShop={false}
           signer={me}
+          room={room}
         />
         <ItemDisplayModal
           open={showShop}
           onClose={handleClose}
           signer={me}
+          room={room}
         />
         <Footer>
           <TextLink href="https://ethglobal.com/events/autonomous">Meowland is with MUD created during Autonomous Worlds. Thank you ETHGlobal.</TextLink>
