@@ -59,8 +59,8 @@ export default function RoomItem({mudId, itemTypeId, x, y}: Props) {
     // try {
     //   await moveRoomItem(moveRoomItem, )
     // // }
-    // console.log('x: ', data.x);
-    // console.log('y: ', data.y);
+    console.log('x: ', data.x);
+    console.log('y: ', data.y);
     // await moveRoomItem(mudId, data.x, data.y)
   }
 
